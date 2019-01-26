@@ -1,12 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Button from '@material-ui/core/Button';
+import Header from "./Header";
+import SearchResults from "./SearchResults";
 
 function App() {
     return (
-        <Button variant="contained" color="primary">
-            Hello World
-        </Button>
+        <React.Fragment>
+            <Header />
+            <SearchResults />
+        </React.Fragment>
     );
 }
 
