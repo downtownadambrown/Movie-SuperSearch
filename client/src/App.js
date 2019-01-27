@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
 import './App.css';
+import { Button } from 'react-bootstrap';
 
 class App extends Component {
     constructor(props){
@@ -9,6 +10,7 @@ class App extends Component {
         this.updateState = this.updateState.bind(this);
         this.submitRequest = this.submitRequest.bind(this);
         this.renderResults = this.renderResults.bind(this);
+        this.showDetails = this.showDetails.bind(this);
     }
 
     queryRequest = async (query) => {
@@ -47,12 +49,18 @@ class App extends Component {
     }
 
     renderResults(results){
+        this.setState({ lastResult : results });
+
         let titleList = [];
         for (let i = 0; i < results.length; i++){
             titleList.push(results[i].TitleName);
         }
 
-        let itemMap = titleList.map((title, i) => <h5 key={i}>{title}</h5>);
+        let itemMap = titleList.map((title, i) =>
+            <div key={i}>
+                <Button bsStyle="primary" key={i} onClick={this.showDetails()}>{title}</Button>
+            </div>
+        );
 
         ReactDOM.render(
             <div>{itemMap}</div>,
