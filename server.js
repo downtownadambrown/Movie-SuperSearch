@@ -20,11 +20,8 @@ app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, './client/public')));
 
+// Import all routes
+require('./routes')(app);
+
 // Listen on a port for requests
 app.listen(port, () => console.log(`Listening on port ${port}`));
-
-// Simple get route for now
-app.get('/search', (req, res) => {
-    console.log('route hit with: ', req);
-    res.send({ express: "Connected to React!" });
-});
