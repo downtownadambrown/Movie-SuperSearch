@@ -6,11 +6,15 @@ module.exports = async (app) => {
     const db = await mongoClient.connect(url).catch(console.error);
 
     app.get('/api/search', function(req, res){
-       // const regexQuery = new RegExp(req.)
+        const regexQuery = new RegExp(req.query.q);
         console.log('Received Search for ', req.query.q);
-        //db.collection('Titles').find({}).toArray().then((matches) => res.send(matches));
-        //console.log('Mongo was accessed');
-        res.json('received');
+        db.collection('Titles')
+            .find({ "TitleName" : regexQuery })
+            .toArray()
+            .then((matches) => {
+                console.log('matches found: ', matches);
+                res.send(matches)
+            });
     });
 
     app.get('/test', function(req, res) {
