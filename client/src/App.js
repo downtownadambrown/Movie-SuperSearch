@@ -14,7 +14,7 @@ class App extends Component {
     }
 
     makeRequest = async () => {
-        const response = await fetch('/test');
+        const response = await fetch('/search');
         const body = await response.json();
 
         if (response.status !== 200) {
