@@ -8,7 +8,7 @@ module.exports = async (app) => {
     app.get('/api/search', function(req, res){
         const regexQuery = '/*/';
         db.collection('Titles').find({}).toArray().then((matches) => res.send(matches));
-        //res.send({ express: "connected to mongo!" });
+        console.log('Mongo was accessed');
     });
 
     app.get('/test', function(req, res) {

@@ -1,20 +1,24 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import './App.css';
 
 class App extends Component {
-    state = {
-        data: null
-    };
-
-    componentDidMount() {
-        // Call our fetch function below once the component mounts
-        this.makeRequest()
-            .then(res => this.setState({ data: res.express }))
-            .catch(err => console.log(err));
+    constructor(props){
+        super(props);
+        this.state = { value: '' };
+        this.updateState = this.updateState.bind(this);
+        this.queryRequest = this.queryRequest.bind(this);
     }
 
-    makeRequest = async () => {
-        const response = await fetch('/api/search');
+    queryRequest = async (query) => {
+        const searchPath = '/api/search';
+        const response = await fetch(searchPath, {
+            method: "POST",
+            mode: "no-cors",
+            headers: {
+                "Content-Type" : "application/json" },
+            body: JSON.stringify(query)
+        });
+
         const body = await response.json();
 
         if (response.status !== 200) {
@@ -23,14 +27,34 @@ class App extends Component {
         return body;
     };
 
+    updateState(event) {
+        this.setState({
+            value: event.target.value
+        });
+        event.preventDefault();
+    }
+
+    renderRequest(event) {
+        const currentSearchQuery = this.state.value;
+        this.queryRequest(currentSearchQuery).then(function(res) {
+           console.log(res);
+        });
+        event.preventDefault();
+    }
+
     render() {
         return (
-            <div className="App">
-                <header className="App-header">
-                    <h1 className="App-title">Movie SuperSearch</h1>
-                </header>
-                <p className="App-intro">{this.state.data}</p>
-            </div>
+            <form onSubmit={this.renderRequest}>
+                <label>
+                    <input type="text"
+                           placeholder="Begin your search. . ."
+                           value={this.state.value}
+                           onChange={this.updateState}
+                           autoFocus
+                    />
+                </label>
+                <input type="submit" value="Submit" />
+            </form>
         );
     }
 }
