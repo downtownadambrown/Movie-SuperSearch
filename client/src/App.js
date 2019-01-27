@@ -6,7 +6,7 @@ class App extends Component {
         super(props);
         this.state = { value: '' };
         this.updateState = this.updateState.bind(this);
-        this.queryRequest = this.queryRequest.bind(this);
+        this.submitRequest = this.submitRequest.bind(this);
     }
 
     queryRequest = async (query) => {
@@ -34,9 +34,8 @@ class App extends Component {
         event.preventDefault();
     }
 
-    renderRequest(event) {
-        const currentSearchQuery = this.state.value;
-        this.queryRequest(currentSearchQuery).then(function(res) {
+    submitRequest(event){
+        this.queryRequest(this.state.value).then((res) => {
            console.log(res);
         });
         event.preventDefault();
@@ -44,7 +43,7 @@ class App extends Component {
 
     render() {
         return (
-            <form onSubmit={this.renderRequest}>
+            <form onSubmit={this.submitRequest}>
                 <label>
                     <input type="text"
                            placeholder="Begin your search. . ."

@@ -5,7 +5,7 @@ const mongoClient = require('mongodb').MongoClient;
 module.exports = async (app) => {
     const db = await mongoClient.connect(url).catch(console.error);
 
-    app.get('/api/search', function(req, res){
+    app.post('/api/search', function(req, res){
         const regexQuery = '/*/';
         db.collection('Titles').find({}).toArray().then((matches) => res.send(matches));
         console.log('Mongo was accessed');
