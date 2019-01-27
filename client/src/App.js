@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import ReactDOM from 'react-dom';
 import './App.css';
 
 class App extends Component {
@@ -7,6 +8,7 @@ class App extends Component {
         this.state = { value: '' };
         this.updateState = this.updateState.bind(this);
         this.submitRequest = this.submitRequest.bind(this);
+        this.renderResults = this.renderResults.bind(this);
     }
 
     queryRequest = async (query) => {
@@ -35,10 +37,32 @@ class App extends Component {
     }
 
     submitRequest(event){
-        this.queryRequest(this.state.value).then((res) => {
-           console.log(res);
+        this.queryRequest(this.state.value).then((results) => {
+            this.setState({
+                results: results
+            });
+            this.renderResults(results);
         });
         event.preventDefault();
+    }
+
+    renderResults(results){
+        let titleList = [];
+        for (let i = 0; i < results.length; i++){
+            titleList.push(results[i].TitleName);
+        }
+
+        let itemMap = titleList.map((title, i) => <h5 key={i}>{title}</h5>);
+
+        ReactDOM.render(
+            <div>{itemMap}</div>,
+            document.getElementById('results-container')
+        )
+
+    }
+
+    showDetails(title){
+
     }
 
     render() {
