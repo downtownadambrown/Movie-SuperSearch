@@ -3,22 +3,69 @@
 }
 
 #search-container{
-  background-color: #282c34;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+    background-color: #282c34;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    color: white;
+    padding: 5px;
+
 }
 
 #results-container{
+    height: 400px;
+}
 
+li {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+ul {
+    list-style-type: none;
+}
+
+div#results {
+    margin-left: 20px;
 }
 
 #details-container{
+    height: 250px;
+    background-color: #282c34;
+}
+
+.buttonSet {
+    margin: 5px;
+}
+
+#search-btn {
+    margin-left: 10px;
+}
+
+#search-box {
+    display: flex;
+    color: #282c34;
 
 }
 
+label {
+    display: flex;
+    flex-direction: row;
+}
 
+#search-box{
+
+}
+
+h4 {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+header {
+
+}
 

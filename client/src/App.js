@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
 import './App.css';
-import { Button } from 'react-bootstrap';
+import { Button, Col } from 'react-bootstrap';
 
 class App extends Component {
     constructor(props){
@@ -57,13 +57,20 @@ class App extends Component {
         }
 
         let itemMap = titleList.map((title, i) =>
-            <div key={i}>
-                <Button bsStyle="primary" key={i} onClick={this.showDetails()}>{title}</Button>
-            </div>
+            <Col sm={6} md={3}>
+                <Button className="buttonSet" key={i} onClick={this.showDetails()}>
+                    {title}
+                </Button>
+            </Col>
         );
 
         ReactDOM.render(
-            <div>{itemMap}</div>,
+            <div id="results">
+                <h5>
+                    Your Search Results (click a result to view additional details):
+                </h5>
+                {itemMap}
+            </div>,
             document.getElementById('results-container')
         )
 
@@ -75,17 +82,24 @@ class App extends Component {
 
     render() {
         return (
-            <form onSubmit={this.submitRequest}>
-                <label>
-                    <input type="text"
-                           placeholder="Begin your search. . ."
-                           value={this.state.value}
-                           onChange={this.updateState}
-                           autoFocus
-                    />
-                </label>
-                <input type="submit" value="Submit" />
-            </form>
+            <header>
+                <h4>Movie SuperSearch</h4>
+                <form onSubmit={this.submitRequest}>
+                        <label>
+                            <input id="search-box"
+                                   type="text"
+                                   placeholder="Begin your search. . ."
+                                   value={this.state.value}
+                                   onChange={this.updateState}
+                                   autoFocus
+                            />
+                            <Button id="search-btn" bsStyle="primary" value="Submit" type="submit" >
+                                Search
+                            </Button>
+                        </label>
+
+                    </form>
+            </header>
         );
     }
 }
