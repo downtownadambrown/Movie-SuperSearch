@@ -10,13 +10,14 @@ class App extends Component {
     }
 
     queryRequest = async (query) => {
-        const searchPath = '/api/search';
+        console.log('stringifyquery = ', JSON.stringify(query));
+        const searchPath = `/api/search?q=${query}`;
         const response = await fetch(searchPath, {
-            method: "POST",
+            method: "GET",
             mode: "no-cors",
             headers: {
-                "Content-Type" : "application/json" },
-            body: JSON.stringify(query)
+                "Accept" : "application/json",
+                "Content-Type" : "application/json" }
         });
 
         const body = await response.json();
