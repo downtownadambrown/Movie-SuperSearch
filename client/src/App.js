@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
 import './App.css';
 import { Button, Col } from 'react-bootstrap';
+import { Row } from 'react-bootstrap';
 
 class App extends Component {
     constructor(props){
@@ -46,6 +47,34 @@ class App extends Component {
             this.renderResults(results);
         });
         event.preventDefault();
+
+        // Need to clear the details-container upon new search to prevent UI 'bug'
+        ReactDOM.render(<div></div>, document.getElementById('details-container'));
+    }
+
+    showDetails(event){
+        console.log('event is:', event);
+        console.log('needing info for: ', event.target.value);
+
+        const desiredTitleName = event.target.value;
+        const data = this.state.lastResult;
+        for (let i = 0; i < data.length; i++){
+            if (data[i].TitleName === desiredTitleName){
+                const found = data[i];
+                console.log('thissun found', found);
+                ReactDOM.render(
+                    <Row id="resultsRow">
+                        <Col sm={10} md={8} lg={6}>
+                            <h4>{found.TitleName} ({found.ReleaseYear})</h4>
+                            <p>{found.Storylines[0].Description}</p>
+                            <h5>Starring: {found.Participants[0].Name}, {found.Participants[1].Name}, {found.Participants[2].Name}</h5>
+                            <ul></ul>
+                        </Col>
+                    </Row>,
+                    document.getElementById('details-container')
+                );
+            }
+        }
     }
 
     renderResults(results){
@@ -57,8 +86,8 @@ class App extends Component {
         }
 
         let itemMap = titleList.map((title, i) =>
-            <Col sm={6} md={3}>
-                <Button className="buttonSet" key={i} onClick={this.showDetails()}>
+            <Col key={i} sm={6} md={3}>
+                <Button className="buttonSet" key={i} onClick={this.showDetails} value={title}>
                     {title}
                 </Button>
             </Col>
@@ -73,10 +102,6 @@ class App extends Component {
             </div>,
             document.getElementById('results-container')
         )
-
-    }
-
-    showDetails(title){
 
     }
 
