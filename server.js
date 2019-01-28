@@ -5,10 +5,6 @@ const port = process.env.PORT || 5000;
 const path = require('path');
 const bunyan = require('express-bunyan-logger');
 
-// Configure Express to use jade/pug
-//app.set('views', path.join(__dirname, 'views'));
-//app.set('view engine', 'pug');
-
 // Configure Express to handle requests
 app.use(bunyan.errorLogger());
 app.use(express.urlencoded({ extended: true }));
