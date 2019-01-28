@@ -7,13 +7,13 @@ Movie SuperSearch is a movie metadata aggregator which allows the user to find i
 
 * **To install & run the server**
 from the root directory run 
-`*npm install*`
+`npm install`
 then
 `node server.js`
 
 * **To install & run the client**
 from the ./client directory run
-`*npm install*`
+`npm install`
 then
 `npm start`
 
@@ -25,4 +25,5 @@ then
 * way better output to UI.  I had to do what I had to do with the time I had.
 * automated testing of course
 * more bells and whistles overall
+* had a strange issue trying to get eslint functioning, so id like to lint it
 
