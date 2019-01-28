@@ -6,14 +6,12 @@ module.exports = async (app) => {
 
     app.get('/api/search', function(req, res){
         const regexQuery = new RegExp(req.query.q, 'i');
-        console.log('Received Search for ', req.query.q);
         db.collection('Titles')
             .find({ "TitleName" : regexQuery })
             .toArray()
             .then((matches) => {
-                console.log(`${matches.length} matches found: `);
-                matches.forEach((item)=>{ console.log(item.TitleName) });
                 res.send(matches);
             });
+        db.close();
     });
 };

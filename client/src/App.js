@@ -53,15 +53,11 @@ class App extends Component {
     }
 
     showDetails(event){
-        console.log('event is:', event);
-        console.log('needing info for: ', event.target.value);
-
         const desiredTitleName = event.target.value;
         const data = this.state.lastResult;
         for (let i = 0; i < data.length; i++){
             if (data[i].TitleName === desiredTitleName){
                 const found = data[i];
-                console.log('thissun found', found);
                 ReactDOM.render(
                     <Row id="resultsRow">
                         <Col sm={10} md={8} lg={6}>
