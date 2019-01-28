@@ -6,7 +6,7 @@ Movie SuperSearch is a movie metadata aggregator which allows the user to find i
 
 ### Getting Started
 
-* **To install & run Express server**
+* **To install & run the server**
 from the root directory run 
 `*npm install*`
 then
