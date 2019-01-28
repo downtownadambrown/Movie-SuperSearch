@@ -58,12 +58,14 @@ class App extends Component {
         for (let i = 0; i < data.length; i++){
             if (data[i].TitleName === desiredTitleName){
                 const found = data[i];
+                const castMembers = found.Participants;
+                const storyLines = found.Storylines;
                 ReactDOM.render(
                     <Row id="resultsRow">
                         <Col sm={10} md={8} lg={6}>
                             <h4>{found.TitleName} ({found.ReleaseYear})</h4>
-                            <p>{found.Storylines[0].Description}</p>
-                            <h5>Starring: {found.Participants[0].Name}, {found.Participants[1].Name}, {found.Participants[2].Name}</h5>
+                            <p>{this.renderStory(storyLines)}</p>
+                            <h5>Featuring Actors:</h5> {this.renderActors(castMembers)}
                             <ul></ul>
                         </Col>
                     </Row>,
@@ -72,6 +74,26 @@ class App extends Component {
             }
         }
     }
+
+    renderStory(storyLines) {
+        const storyList = [];
+        storyLines.forEach((value) => {
+            storyList.push(value.Description);
+        });
+        const story = storyList.join('  ');
+        return story;
+    }
+
+    renderActors(castMembers) {
+        let participantsList = [];
+        castMembers.forEach((value, i) => {
+            if (value.RoleType === "Actor") {
+                    participantsList.push(value.Name);
+            }
+        });
+
+        return participantsList.join(', ');
+    };
 
     renderResults(results){
         this.setState({ lastResult : results });
@@ -82,7 +104,7 @@ class App extends Component {
         }
 
         let itemMap = titleList.map((title, i) =>
-            <Col key={i} sm={6} md={3}>
+            <Col key={i} sm={6} md={4} lg={2}>
                 <Button className="buttonSet" key={i} onClick={this.showDetails} value={title}>
                     {title}
                 </Button>
@@ -118,7 +140,6 @@ class App extends Component {
                                 Search
                             </Button>
                         </label>
-
                     </form>
             </header>
         );

@@ -12,6 +12,5 @@ module.exports = async (app) => {
             .then((matches) => {
                 res.send(matches);
             });
-        db.close();
     });
 };
