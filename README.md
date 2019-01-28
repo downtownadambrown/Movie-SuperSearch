@@ -18,6 +18,7 @@ then
 `npm start`
 
 **Things I want to add:**
+* should have it deployed to heroku on Monday
 * a true view templating engine (jade/pug for example)
 * a simple script to run nodemon and npm start, i know this is simple just ran out of all time and had to say quits
 * split components in React with a better class-like feel throughout the app
