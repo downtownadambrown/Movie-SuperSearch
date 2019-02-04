@@ -1,7 +1,11 @@
 {
   "name": "client",
   "version": "0.1.0",
-  "private": true,
+  "private": true,  
+  "engines": {
+    "npm": "6.7.0",
+    "node": "11.7.0"
+  },
   "dependencies": {
     "@material-ui/core": "^3.9.1",
     "react": "^16.7.0",
