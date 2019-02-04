@@ -21,8 +21,8 @@ then
 * a true view templating engine (jade/pug for example)
 * split components in React with a better class-like feel throughout the app
 * better use of functional programming
-* way better output to UI.  I had to do what I had to do with the time I had.
-* automated testing of course
+* An improved and more robust UI.  I had to do what I had to do with the time I had.
+* automated testing with Jest
 * more bells and whistles overall
 * had a strange issue trying to get eslint functioning, so id like to lint it
 
