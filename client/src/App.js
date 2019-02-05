@@ -23,6 +23,7 @@ class App extends Component {
                 "Accept": "application/json",
                 "Content-Type": "application/json" }
         }).then((results) => {
+            console.log(results);
             this.setState({
                 results: results
             });
