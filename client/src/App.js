@@ -22,9 +22,11 @@ class App extends Component {
             headers: {
                 "Accept": "application/json",
                 "Content-Type": "application/json" }
-        }).then((response) => {
-            console.log(response);
-            return response;
+        }).then((results) => {
+            this.setState({
+                results: results
+            });
+            this.renderResults(results);
         }).catch((err) => {
             throw new Error(err);
         });
@@ -38,16 +40,10 @@ class App extends Component {
     }
 
     submitRequest(event){
-        this.queryRequest(this.state.value).then((results) => {
-            this.setState({
-                results: results
-            });
-            this.renderResults(results);
-        });
-        event.preventDefault();
-
         // Need to clear the details-container upon new search to prevent UI 'bug'
         ReactDOM.render(<div></div>, document.getElementById('details-container'));
+        this.queryRequest(this.state.value);
+        event.preventDefault();
     }
 
     showDetails(event){
