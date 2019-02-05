@@ -19,8 +19,7 @@ then
 
 **Things I want to add:**
 * a true view templating engine (jade/pug for example)
-* split components in React with a better class-like feel throughout the app
-* better use of functional programming
+* split components in React with a better class-like feel throughout the app, an overall better application of functional programming
 * An improved and more robust UI.  I had to do what I had to do with the time I had.
 * automated testing with Jest
 * more bells and whistles overall
