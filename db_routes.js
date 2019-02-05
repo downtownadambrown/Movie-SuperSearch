@@ -11,7 +11,7 @@ module.exports = async (app) => {
       .toArray()
       .then((matches) => {
         res.set('Content-Type', 'application/json');
-        res.send(JSON.stringify(matches));
+        res.send(matches);
       });
   });
 };
