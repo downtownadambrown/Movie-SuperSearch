@@ -18,7 +18,7 @@ app.use(express.static(path.join(__dirname, 'client/build')));
 // Import db routes
 require('./db_routes')(app);
 
-app.get('*', (req, res) => {
+app.get('/', (req, res) => {
     res.sendfile(path.join(__dirname, 'client/build/index.html'));
 });
 
