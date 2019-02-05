@@ -20,11 +20,12 @@ class App extends Component {
             method: "GET",
             mode: "no-cors",
             headers: {
-                "Accept" : "application/json",
-                "Content-Type" : "application/json" }
+                "Accept": "application/json",
+                "Content-Type": "application/json" }
         });
 
-        const body = await response.json();
+        const body = await response;
+        console.log(response);
 
         if (response.status !== 200) {
             throw Error(body.message)
