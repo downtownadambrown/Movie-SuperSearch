@@ -10,7 +10,7 @@ module.exports = async (app) => {
       .find({ TitleName: regexQuery })
       .toArray()
       .then((matches) => {
-        res.send(matches);
+        res.send(JSON.stringify(matches));
       });
   });
 };
