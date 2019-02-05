@@ -24,7 +24,7 @@ class App extends Component {
                 "Content-Type": "application/json" }
         });
 
-        const body = await response;
+        const body = await response.json;
         console.log(response);
 
         if (response.status !== 200) {
