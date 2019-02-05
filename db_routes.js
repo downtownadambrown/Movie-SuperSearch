@@ -10,6 +10,7 @@ module.exports = async (app) => {
       .find({ TitleName: regexQuery })
       .toArray()
       .then((matches) => {
+        res.set('Content-Type', 'application/json');
         res.send(JSON.stringify(matches));
       });
   });
